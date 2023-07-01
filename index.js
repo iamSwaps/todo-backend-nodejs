@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 require("dotenv").config(); // Load environment variables from .env file
 
 // Connect to MongoDB Atlas
@@ -19,6 +20,11 @@ const Todo = mongoose.model("Todo", todoSchema);
 
 const app = express();
 app.use(express.json());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 // API: Get all todos
 app.get("/todos", async (req, res) => {
